@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -87,6 +87,15 @@ public class ShuffleBag<T> : ICollection<T>, IList<T>
     {
         m_Data.Add(item);
         m_Cursor = m_Data.Count - 1;
+    }
+
+    public void AddRange(System.Collections.Generic.IEnumerable<T> collection)
+    {
+        IEnumerator<T> enumerator = collection.GetEnumerator();
+        while (enumerator.MoveNext())
+        {
+            Add(enumerator.Current);
+        }
     }
 
     public int Count
